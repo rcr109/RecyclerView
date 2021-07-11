@@ -39,10 +39,6 @@ class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHold
         fun bind(contact: Contact){
             tvName.text = contact.name
             tvPhone.text = contact.fone
-
         }
-
     }
-
-
 }
