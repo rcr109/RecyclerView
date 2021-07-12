@@ -13,9 +13,9 @@ class ContactDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_detail)
 
-       // initToolbar()
-       // getExtras()
-       // bindViews()
+        initToolbar()
+        getExtras()
+        bindViews()
     }
 
     private fun initToolbar(){
@@ -29,7 +29,7 @@ class ContactDetail : AppCompatActivity() {
     }
 
     private fun bindViews(){
-        tv_name.text = contact?.name
+        findViewById<TextView>(R.id.tv_name).text = contact?.name
         findViewById<TextView>(R.id.tv_phone).text = contact?.fone
 
     }
