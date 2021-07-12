@@ -1,8 +1,8 @@
 package rcr.projects.recyclerviewapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -13,15 +13,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import rcr.projects.recyclerviewapp.adapter.Contact
-import rcr.projects.recyclerviewapp.adapter.ContactAdapter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ClickItemContactListener {
     private val rvList: RecyclerView by lazy {
         findViewById(R.id.rv_list)
     }
 
-    private val adapter = ContactAdapter()
+    private val adapter = ContactAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +61,31 @@ class MainActivity : AppCompatActivity() {
                     name = "Maria",
                     fone = "19-965325322",
                     photograph = "foto"
+                ),
+                Contact(
+                    name = "Manoel",
+                    fone = "14-655898532",
+                    photograph = "foto"
+                ),
+                Contact(
+                    name = "Julia",
+                    fone = "71-863256324",
+                    photograph = "foto"
+                ),
+                Contact(
+                    name = "Marta",
+                    fone = "21-536593222",
+                    photograph = "foto"
+                ),
+                Contact(
+                    name = "Roberta",
+                    fone = "88-400056324",
+                    photograph = "foto"
+                ),
+                Contact(
+                    name = "Joana",
+                    fone = "21-253636922",
+                    photograph = "foto"
                 )
             )
         )
@@ -94,5 +117,10 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun clickItemContact(contact: Contact) {
+        var intent = Intent(this, ContactDetail::class.java)
+        startActivity(intent)
     }
 }

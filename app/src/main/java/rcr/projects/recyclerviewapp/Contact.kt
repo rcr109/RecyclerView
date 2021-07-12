@@ -1,4 +1,4 @@
-package rcr.projects.recyclerviewapp.adapter
+package rcr.projects.recyclerviewapp
 
 data class Contact(
     var name: String,

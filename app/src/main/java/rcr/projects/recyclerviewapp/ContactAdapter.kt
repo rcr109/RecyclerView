@@ -1,4 +1,4 @@
-package rcr.projects.recyclerviewapp.adapter
+package rcr.projects.recyclerviewapp
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import rcr.projects.recyclerviewapp.R
 
-class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHolder>() {
+class ContactAdapter(var listener: ClickItemContactListener): RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHolder>() {
 
     private val list: MutableList<Contact> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item, parent, false)
-        return ContactAdapterViewHolder(view)
+        return ContactAdapterViewHolder(view, list, listener)
     }
 
     override fun onBindViewHolder(holder: ContactAdapterViewHolder, position: Int) {
@@ -31,10 +30,16 @@ class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactAdapterViewHold
         notifyDataSetChanged()
     }
 
-    class ContactAdapterViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView){
+    class ContactAdapterViewHolder(ItemView: View, var list: List<Contact>, var listener: ClickItemContactListener) : RecyclerView.ViewHolder(ItemView){
         private val tvName: TextView = itemView.findViewById(R.id.tv_name)
         private val tvPhone: TextView = itemView.findViewById(R.id.tv_phone)
         private val ivPhotograph: ImageView = itemView.findViewById(R.id.ivPhotograph)
+
+        init {
+            itemView.setOnClickListener{
+                listener.clickItemContact(list[absoluteAdapterPosition])
+            }
+        }
 
         fun bind(contact: Contact){
             tvName.text = contact.name
